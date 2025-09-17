@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康管理系統 - 儀表板</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 側邊導航欄 -->
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <div class="text-center mb-4">
+                        <h5 class="text-white">健康管理系統</h5>
+                        <p class="text-white-50" id="userGreeting"></p>
+                    </div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#dashboard">
+                                <i class="bi bi-house-door"></i> 儀表板
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tracking">
+                                <i class="bi bi-clipboard-data"></i> 熱量與水分追蹤
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#charts">
+                                <i class="bi bi-graph-up"></i> BMI與熱量圖表
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#exercise">
+                                <i class="bi bi-bicycle"></i> 運動建議
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#diet">
+                                <i class="bi bi-egg-fried"></i> 飲食建議
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#chatbot">
+                                <i class="bi bi-chat-dots"></i> 健康助理
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="position-absolute bottom-0 pb-3">
+                        <button class="btn btn-outline-light w-100" id="logoutBtn">
+                            <i class="bi bi-box-arrow-right"></i> 登出
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- 主要內容區 -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <!-- 儀表板區域 -->
+                <div class="content-section" id="dashboard-section">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">儀表板</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="card stat-card bg-primary text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">今日熱量攝取</h5>
+                                    <p class="card-text h2" id="todayCalories">0</p>
+                                    <small>目標: <span id="calorieGoal">2000</span> 大卡</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card stat-card bg-info text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">今日水分攝取</h5>
+                                    <p class="card-text h2" id="todayWater">0</p>
+                                    <small>目標: <span id="waterGoal">2000</span> ml</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card stat-card bg-success text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">當前 BMI</h5>
+                                    <p class="card-text h2" id="currentBMI">0</p>
+                                    <small>正常範圍: 18.5 - 24</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 熱量與水分追蹤區域 -->
+                <div class="content-section d-none" id="tracking-section">
+                    <h2 class="mb-4">熱量與水分追蹤</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">記錄飲食</h5>
+                                    <form id="foodForm">
+                                        <div class="mb-3">
+                                            <label class="form-label">食物名稱</label>
+                                            <input type="text" class="form-control" id="foodName" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">熱量 (大卡)</label>
+                                            <input type="number" class="form-control" id="foodCalories" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">份量 (克)</label>
+                                            <input type="number" class="form-control" id="foodAmount" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">記錄</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">記錄水分</h5>
+                                    <form id="waterForm">
+                                        <div class="mb-3">
+                                            <label class="form-label">水分量 (ml)</label>
+                                            <input type="number" class="form-control" id="waterAmount" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-info text-white">記錄</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 圖表區域 -->
+                <div class="content-section d-none" id="charts-section">
+                    <h2 class="mb-4">BMI與熱量圖表</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">BMI 變化趨勢</h5>
+                                    <div class="chart-container">
+                                        <canvas id="bmiChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">每日熱量攝取</h5>
+                                    <div class="chart-container">
+                                        <canvas id="calorieChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 運動建議區域 -->
+                <div class="content-section d-none" id="exercise-section">
+                    <h2 class="mb-4">運動建議</h2>
+                    <div class="row" id="exerciseRecommendations">
+                        <!-- 動態生成運動建議卡片 -->
+                    </div>
+                </div>
+
+                <!-- 飲食建議區域 -->
+                <div class="content-section d-none" id="diet-section">
+                    <h2 class="mb-4">飲食建議</h2>
+                    <div class="row" id="dietRecommendations">
+                        <!-- 動態生成飲食建議卡片 -->
+                    </div>
+                </div>
+
+                <!-- 健康助理區域 -->
+                <div class="content-section d-none" id="chatbot-section">
+                    <h2 class="mb-4">健康助理</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="chat-box" class="mb-3"></div>
+                            <form id="chat-form" class="d-flex">
+                                <input type="text" id="user-input" class="form-control me-2" 
+                                       placeholder="請輸入您的問題...">
+                                <button type="submit" class="btn btn-primary">發送</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/tracking.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/exercise.js"></script>
+    <script src="js/diet.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html> 
