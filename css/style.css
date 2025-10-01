@@ -1,6 +1,459 @@
 /* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Microsoft JhengHei', Arial, sans-serif;
+    font-family: 'Microsoft JhengHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+.modern-login-page {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    position: relative;
+}
+
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.bg-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: float 20s ease-in-out infinite;
+}
+
+.shape-1 {
+    width: 300px;
+    height: 300px;
+    top: -150px;
+    left: -150px;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 400px;
+    height: 400px;
+    bottom: -200px;
+    right: -200px;
+    animation-delay: 5s;
+}
+
+.shape-3 {
+    width: 250px;
+    height: 250px;
+    top: 50%;
+    right: -125px;
+    animation-delay: 10s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 30px) scale(0.9);
+    }
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+.login-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-header-modern {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.logo-container {
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.logo-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.logo-icon i {
+    font-size: 2.5rem;
+    color: #fff;
+}
+
+.brand-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+.brand-subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    font-weight: 300;
+}
+
+.card-body-modern {
+    padding: 2.5rem 2rem;
+}
+
+.tab-switch {
+    display: flex;
+    background: #f0f0f0;
+    border-radius: 50px;
+    padding: 6px;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.tab-indicator {
+    position: absolute;
+    width: 50%;
+    height: calc(100% - 12px);
+    background: #667eea;
+    border-radius: 50px;
+    top: 6px;
+    left: 0;
+    transition: left 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 0;
+}
+
+.tab-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.tab-btn.active {
+    color: #fff;
+}
+
+.tab-btn i {
+    font-size: 1.1rem;
+}
+
+.forms-container {
+    position: relative;
+    min-height: 400px;
+}
+
+.form-wrapper {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-20px);
+    transition: all 0.4s ease;
+}
+
+.form-wrapper.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    position: relative;
+}
+
+.input-group-modern {
+    margin-bottom: 1.5rem;
+}
+
+.modern-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    color: #999;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.input-with-icon.focused .input-icon {
+    color: #667eea;
+}
+
+.modern-input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+.modern-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.modern-input::placeholder {
+    color: #bbb;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 1rem;
+    color: #999;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: #667eea;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+}
+
+.custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    margin-right: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+    background: #667eea;
+    border-color: #667eea;
+}
+
+.custom-checkbox input:checked ~ .checkmark::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #fff;
+    font-size: 0.7rem;
+}
+
+.checkbox-label {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.forgot-password {
+    font-size: 0.9rem;
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #764ba2;
+}
+
+.btn-modern {
+    width: 100%;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary-modern {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+}
+
+.btn-primary-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    transition: left 0.3s ease;
+}
+
+.btn-primary-modern:hover::before {
+    left: 0;
+}
+
+.btn-primary-modern span,
+.btn-primary-modern i {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-primary-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary-modern:active {
+    transform: translateY(0);
+}
+
+.card-footer-modern {
+    background: #f8f9fa;
+    padding: 1.5rem 2rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.footer-features {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666;
+    font-size: 0.85rem;
+    animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.feature-item:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.feature-item:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.feature-item:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.feature-item i {
+    font-size: 1.5rem;
+    color: #667eea;
 }
 
 .nav-tabs .nav-link {
@@ -101,8 +554,77 @@ body {
     .sidebar {
         min-height: auto;
     }
-    
+
     .chart-container {
         height: 250px;
+    }
+
+    .brand-title {
+        font-size: 1.5rem;
+    }
+
+    .brand-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .logo-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .logo-icon i {
+        font-size: 2rem;
+    }
+
+    .card-header-modern {
+        padding: 2rem 1.5rem 1.5rem;
+    }
+
+    .card-body-modern {
+        padding: 2rem 1.5rem;
+    }
+
+    .card-footer-modern {
+        padding: 1rem 1.5rem;
+    }
+
+    .tab-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .footer-features {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .feature-item {
+        flex: 1 1 30%;
+        font-size: 0.8rem;
+    }
+
+    .bg-shape {
+        opacity: 0.5;
+    }
+
+    .forms-container {
+        min-height: 450px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modern-input {
+        font-size: 0.95rem;
+        padding: 0.9rem 0.9rem 0.9rem 2.8rem;
+    }
+
+    .input-icon {
+        left: 0.8rem;
+        font-size: 1rem;
+    }
+
+    .btn-modern {
+        padding: 0.9rem 1.5rem;
+        font-size: 1rem;
     }
 } 
